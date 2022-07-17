@@ -86,9 +86,8 @@ TextEditingController nameCtrl = TextEditingController(text: '');
                           'ตกลง'
                         ),
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.red
+                        primary: Color.fromARGB(255, 150, 0, 142)
                       ),
-                      
                       ),
                     ],
                     );

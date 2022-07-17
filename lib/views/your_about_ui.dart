@@ -84,7 +84,9 @@ class _YourAboutUIState extends State<YourAboutUI> {
                         child: Text(
                           'ตกลง'
                         ),
-                      
+                        style: ElevatedButton.styleFrom(
+                        primary: Color.fromARGB(255, 150, 0, 142)
+                      ),
                       ),
                     ],
                     );
