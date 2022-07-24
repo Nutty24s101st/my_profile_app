@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class YourEmailUI extends StatefulWidget {
   const YourEmailUI({Key? key}) : super(key: key);
@@ -9,7 +10,13 @@ class YourEmailUI extends StatefulWidget {
 }
 
 class _YourEmailUIState extends State<YourEmailUI> {
-  TextEditingController nameCtrl = TextEditingController(text: '');
+  TextEditingController EmailCtrl = TextEditingController(text: '');
+
+Future addYourEmailToSF() async{
+  SharedPreferences prefer = await SharedPreferences.getInstance();
+  prefer.setString('youremail', EmailCtrl.text);
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +57,7 @@ class _YourEmailUIState extends State<YourEmailUI> {
               right: 40.0,
             ),
             child: TextField(
-              controller: nameCtrl,
+              controller: EmailCtrl,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: 'ป้อนอีเมลล์',
@@ -65,7 +72,7 @@ class _YourEmailUIState extends State<YourEmailUI> {
             ),
             ElevatedButton(
               onPressed: () {
-                if (nameCtrl.text.trim().length == 0) {
+                if (EmailCtrl.text.trim().length == 0) {
                   showDialog(
                     context: context,
                     builder: (context){
@@ -94,7 +101,9 @@ class _YourEmailUIState extends State<YourEmailUI> {
                   );
 
                 } else {
-
+                addYourEmailToSF().then((value) {
+                  Navigator.pop(context);
+                });
                 }
                 },
               child: Text(

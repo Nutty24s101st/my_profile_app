@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class YourPhoneUI extends StatefulWidget {
   const YourPhoneUI({Key? key}) : super(key: key);
@@ -9,7 +10,12 @@ class YourPhoneUI extends StatefulWidget {
 }
 
 class _YourPhoneUIState extends State<YourPhoneUI> {
-TextEditingController nameCtrl = TextEditingController(text: '');
+TextEditingController phoneCtrl = TextEditingController(text: '');
+
+Future addYourPhoneToSF() async{
+  SharedPreferences prefer = await SharedPreferences.getInstance();
+  prefer.setString('yourphone', phoneCtrl.text);
+}
 
   @override
   Widget build(BuildContext context) {
@@ -51,11 +57,11 @@ TextEditingController nameCtrl = TextEditingController(text: '');
               right: 40.0,
             ),
             child: TextField(
-              controller: nameCtrl,
+              controller: phoneCtrl,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: 'ป้อนเบอร์โทร',
-              hintStyle: TextStyle(
+                hintStyle: TextStyle(
                 color: Colors.grey
               ),
               ),
@@ -66,7 +72,7 @@ TextEditingController nameCtrl = TextEditingController(text: '');
             ),
             ElevatedButton(
               onPressed: () {
-                if (nameCtrl.text.trim().length == 0) {
+                if (phoneCtrl.text.trim().length == 0) {
                   showDialog(
                     context: context,
                     builder: (context){
@@ -95,7 +101,9 @@ TextEditingController nameCtrl = TextEditingController(text: '');
                   );
 
                 } else {
-
+                addYourPhoneToSF().then((value) {
+                  Navigator.pop(context);
+                });
                 }
                 },
               child: Text(
