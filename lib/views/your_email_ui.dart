@@ -21,7 +21,7 @@ Future addYourEmailToSF() async{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green,
+        backgroundColor: Color.fromARGB(255, 139, 0, 128),
         title: Text(
           'Add/Edit Phone Number',
         ),
