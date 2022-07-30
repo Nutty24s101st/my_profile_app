@@ -42,7 +42,7 @@ Future addYourEmailToSF() async{
               height: 25.0,
             ),
           Text(
-            'ป้อนอีเมลล์ของคุณ',
+            'ป้อนอีเมลของคุณ',
             style: GoogleFonts.itim(
               fontSize: 35.0,
               color: Colors.black,
